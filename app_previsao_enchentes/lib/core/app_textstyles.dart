@@ -49,7 +49,7 @@ class AppTextStyles {
 
   static final TextStyle nextDaysClimate = TextStyle(
     color: Colors.white,
-    fontSize: 30,
+    fontSize: 20,
   );
 
   static final TextStyle nextDaysClimateIcon = TextStyle(
@@ -74,5 +74,26 @@ class AppTextStyles {
     color: Colors.white,
     fontSize: 15,
   );
+
+  //
+  // Report Flood
+  //
+  static final TextStyle floodScreenTitle = TextStyle(
+    color: AppColors.blueMariner,
+    fontSize: 20,
+    fontWeight: FontWeight.bold
+  );
+
+  static final TextStyle floodScreenLabel = TextStyle(
+    color: AppColors.blueMariner,
+    fontSize: 25,
+    fontWeight: FontWeight.bold
+  );
+
+  static final TextStyle floodScreenButtonLabel = TextStyle(
+    color: Colors.white,
+    fontSize: 20,
+  );
+
 
 }

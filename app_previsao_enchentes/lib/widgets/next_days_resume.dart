@@ -6,8 +6,9 @@ import 'package:flutter/material.dart';
 class NextDaysWidget extends StatelessWidget {
 
   final String dayName;
+  final String dayDate;
   final String image;
-  final String climate;
+  final String climateDesc;
   final String minClimate;
   final String maxClimate;
   final bool isLastWidget;
@@ -16,10 +17,11 @@ class NextDaysWidget extends StatelessWidget {
     Key? key,
     required this.dayName,
     required this.image,
-    required this.climate,
+    required this.climateDesc,
     required this.minClimate,
     required this.maxClimate,
-    this.isLastWidget = false
+    this.isLastWidget = false,
+    required this.dayDate
   }) : super(key: key);
 
   @override
@@ -34,17 +36,17 @@ class NextDaysWidget extends StatelessWidget {
             children: [
               Padding(
                 padding: const EdgeInsets.only(bottom: 15),
-                child: Text("${this.dayName}".toUpperCase(), textAlign: TextAlign.left, style: AppTextStyles.nextDaysName ),
+                child: Text("${this.dayName} - ${this.dayDate}".toUpperCase(), textAlign: TextAlign.left, style: AppTextStyles.nextDaysName ),
               ),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Padding(
-                    padding: const EdgeInsets.only(right: 5),
+                    padding: const EdgeInsets.only(right: 10),
                     child: Image.asset("images/${this.image}.png", height: 40, color: Colors.white),
                   ),
-                  Text("${this.climate}", style: AppTextStyles.nextDaysClimate),
-                  Text("o", style: AppTextStyles.nextDaysClimateIcon),
+                  Text("${this.climateDesc}".replaceFirst(" ", "\n"), style: AppTextStyles.nextDaysClimate, ),
+                  //Text("o", style: AppTextStyles.nextDaysClimateIcon),
                 ],
               ),
 

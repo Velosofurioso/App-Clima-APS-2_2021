@@ -8,17 +8,13 @@ class ClimateDetailRight extends StatelessWidget {
   final String value1;
   final String title2;
   final String value2;
-  final String title3;
-  final String value3;
 
   const ClimateDetailRight({
     Key? key,
     required this.title1,
     required this.value1,
     required this.title2,
-    required this.value2,
-    required this.title3,
-    required this.value3
+    required this.value2
   }) : super(key: key);
 
   @override
@@ -34,7 +30,7 @@ class ClimateDetailRight extends StatelessWidget {
             children: [
               Text("${this.title1}", style: AppTextStyles.homeTodayDetailsText),
               Padding(
-                padding: const EdgeInsets.only(left: 35),
+                padding: const EdgeInsets.only(left: 40),
                 child: Text("${this.value1}", style: AppTextStyles.homeTodayDetailsText),
               ),
             ],
@@ -58,32 +54,8 @@ class ClimateDetailRight extends StatelessWidget {
             children: [
               Text("${this.title2}", style: AppTextStyles.homeTodayDetailsText),
               Padding(
-                padding: const EdgeInsets.only(left: 40),
-                child: Text("${this.value2}", style: AppTextStyles.homeTodayDetailsText),
-              ),
-            ],
-          ),
-
-          Padding(
-            padding: const EdgeInsets.only(top: 10, bottom: 10),
-            child: Container(
-              width: 163,
-              child: PreferredSize(
-                preferredSize: Size.fromHeight(4.0),
-                child: Container(
-                  color: AppColors.blueHavelock,
-                  height: 2.0,
-                ),
-              ),
-            ),
-          ),
-
-          Row(
-            children: [
-              Text("${this.title3}", style: AppTextStyles.homeTodayDetailsText),
-              Padding(
                 padding: const EdgeInsets.only(left: 15),
-                child: Text("${this.value3}", style: AppTextStyles.homeTodayDetailsText),
+                child: Text("${this.value2}", style: AppTextStyles.homeTodayDetailsText),
               ),
             ],
           ),
