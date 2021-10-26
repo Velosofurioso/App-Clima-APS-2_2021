@@ -7,7 +7,7 @@ public class Wheater implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	
-	private int temperatura;
+	private int temp;
 	private String date;
 	private String time;
 	private String condition_code;
@@ -22,13 +22,15 @@ public class Wheater implements Serializable {
 	private String sunset;
 	private String condition_slug;
 	private String city_name;
+	
+	
 	private List<WheaterForecast> forecast;
 	
-	public int getTemperatura() {
-		return temperatura;
+	public int getTemp() {
+		return temp;
 	}
-	public void setTemperatura(int temperatura) {
-		this.temperatura = temperatura;
+	public void setTemp(int temp) {
+		this.temp = temp;
 	}
 	public String getDate() {
 		return date;
@@ -124,7 +126,7 @@ public class Wheater implements Serializable {
 	
 	@Override
 	public String toString() {
-		return "Wheater [temperatura=" + temperatura + ", date=" + date + ", time=" + time + ", condition_code="
+		return "Wheater [temp=" + temp + ", date=" + date + ", time=" + time + ", condition_code="
 				+ condition_code + ", description=" + description + ", currently=" + currently + ", cid=" + cid
 				+ ", city=" + city + ", img_id=" + img_id + ", humidity=" + humidity + ", wind_speedy=" + wind_speedy
 				+ ", sunrise=" + sunrise + ", sunset=" + sunset + ", condition_slug=" + condition_slug + ", city_name="
