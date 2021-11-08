@@ -6,6 +6,7 @@ import 'package:app_previsao_enchentes/core/app_colors.dart';
 import 'package:app_previsao_enchentes/core/app_textstyles.dart';
 import 'package:app_previsao_enchentes/models/Wheater.dart';
 import 'package:app_previsao_enchentes/screens/add_flood_screen.dart';
+import 'package:app_previsao_enchentes/screens/locais_enchente_screen.dart';
 import 'package:app_previsao_enchentes/widgets/button_climate_status.dart';
 import 'package:app_previsao_enchentes/widgets/climate_details_left.dart';
 import 'package:app_previsao_enchentes/widgets/climate_details_right.dart';
@@ -25,6 +26,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
   late Future<Wheater> actualWheater;
   String? cityName = null;
+  String initialMessage = "Carregando os dados";
+  bool showProgress = true;
 
   @override
   void initState()  {
@@ -47,6 +50,9 @@ class _HomeScreenState extends State<HomeScreen> {
             leading: IconButton(
                 icon: Icon(Icons.menu_outlined, size: 25),
                 onPressed: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => LocaisEnchenteScreen())
+                  );
                 }),
             title: Text("${this.cityName}", style: AppTextStyles.homeTitle),
             centerTitle: true,
@@ -95,8 +101,26 @@ class _HomeScreenState extends State<HomeScreen> {
       );
     }
     else {
-      return Center(
-        child: CircularProgressIndicator(),
+      return Scaffold(
+          backgroundColor: AppColors.blueMariner,
+          appBar: AppBar(
+            backgroundColor: AppColors.blueMariner,
+            title: Text("", style: AppTextStyles.homeTitle),
+            centerTitle: true,
+            elevation: 0
+          ),
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              showProgress ? CircularProgressIndicator(): Container(),
+              Padding(
+                padding: const EdgeInsets.only(top: 15),
+                child: Text("${this.initialMessage}", style: TextStyle(fontSize: 25, color: Colors.white), textAlign: TextAlign.center),
+              ),
+            ],
+          ),
+        ),
       );
     }
   }
@@ -242,7 +266,9 @@ class _HomeScreenState extends State<HomeScreen> {
           textColor: Colors.white,
           fontSize: 16.0
       );
-
+      this.initialMessage = "Falha ao carregar os dados, \n tente mais tarde";
+      this.showProgress = false;
+      setState(() {});
       throw Exception();
     }
   }

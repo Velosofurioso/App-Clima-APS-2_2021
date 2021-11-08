@@ -46,7 +46,6 @@ class NextDaysWidget extends StatelessWidget {
                     child: Image.asset("images/${this.image}.png", height: 40, color: Colors.white),
                   ),
                   Text("${this.climateDesc}".replaceFirst(" ", "\n"), style: AppTextStyles.nextDaysClimate, ),
-                  //Text("o", style: AppTextStyles.nextDaysClimateIcon),
                 ],
               ),
 
@@ -69,7 +68,7 @@ class NextDaysWidget extends StatelessWidget {
           ),
 
 
-          // If is the last Widget Render not show thw right line
+          // If is the last Widget Render not show the right line
           !this.isLastWidget ?
             Container(
               padding: EdgeInsets.only(left: 20),

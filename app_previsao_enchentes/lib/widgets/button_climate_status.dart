@@ -41,9 +41,10 @@ class ButtonClimateStatus extends StatelessWidget {
 
 
           Positioned(
-              top: 40,
-              left: 85,
+              top: 45,
+              left: 115,
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
 
                   Padding(

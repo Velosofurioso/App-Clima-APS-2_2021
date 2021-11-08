@@ -24,9 +24,18 @@ public class CepController {
 	
 	@GetMapping(value="/{cep}")
 	public ResponseEntity<Cep> getEnderecoByCep(@PathVariable @Validated String cep) {
-		logger.info("");
-		Cep endereco = cepService.getEnderecoByCep(cep);
-		return ResponseEntity.ok().body(endereco);
+		try {
+			logger.info("Requisição no endpoint GET /cep/{id}");
+			Cep endereco = cepService.getEnderecoByCep(cep);
+			
+			logger.info("Resposta do endpoint GET /cep/{id} \n");
+			return ResponseEntity.ok().body(endereco);
+		}
+		
+		catch(Exception e) {
+			logger.error("Erro no endpoint endpoint GET /cep/{id} \n " + e.getMessage());
+			return ResponseEntity.internalServerError().build();
+		}
 	}
 
 }

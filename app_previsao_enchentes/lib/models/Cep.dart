@@ -1,11 +1,11 @@
 
 class Cep {
-  final String cep;
-  final String logradouro;
-  final String complemento;
-  final String bairro;
-  final String localidade;
-  final String uf;
+  final String? cep;
+  final String? logradouro;
+  final String? complemento;
+  final String? bairro;
+  final String? localidade;
+  final String? uf;
 
   Cep( {
     required this.cep,
@@ -19,12 +19,12 @@ class Cep {
 
   factory Cep.fromJson(Map<String, dynamic> parsedJson) {
     return Cep(
-      cep: parsedJson["cep"],
-      localidade: parsedJson["localidade"],
-      complemento: parsedJson["complemento"],
-      bairro: parsedJson["bairro"],
-      logradouro: parsedJson["logradouro"],
-      uf: parsedJson["uf"],
+      cep: parsedJson["cep"] ?? "",
+      localidade: parsedJson["localidade"] ?? "",
+      complemento: parsedJson["complemento"] ?? "",
+      bairro: parsedJson["bairro"] ?? "",
+      logradouro: parsedJson["logradouro"] ?? "",
+      uf: parsedJson["uf"] ?? "",
     );
   }
 

@@ -26,6 +26,9 @@ public class LocalEnchente {
 	
 	private Date dataOcorrida;
 	
+	@Column(nullable = true)
+	private int reportCount;
+	
 	
 	public LocalEnchente(Cep local, String nivelDeAgua, Date dataOcorrida) {
 		super();
@@ -39,6 +42,8 @@ public class LocalEnchente {
 		this.local = local;
 		this.dataOcorrida = dataOcorrida;
 	}
+	
+	public LocalEnchente() {}
 
 	public Cep getLocal() {
 		return local;
@@ -62,6 +67,14 @@ public class LocalEnchente {
 
 	public void setDataOcorrida(Date dataOcorrida) {
 		this.dataOcorrida = dataOcorrida;
+	}
+
+	public int getReportCount() {
+		return reportCount;
+	}
+
+	public void setReportCount(int reportCount) {
+		this.reportCount = reportCount;
 	}
 	
 	

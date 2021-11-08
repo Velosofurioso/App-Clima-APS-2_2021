@@ -20,6 +20,7 @@ class AddFloodScreen extends StatefulWidget {
 class _AddFloodScreenState extends State<AddFloodScreen> {
   final _formKey = GlobalKey<FormState>();
   late Cep dadosEndereco;
+  String nivelDeAgua = "Baixo";
 
   final cep = new TextEditingController();
   final uf = new TextEditingController();
@@ -37,13 +38,16 @@ class _AddFloodScreenState extends State<AddFloodScreen> {
       headers: <String, String> {
         'Content-Type': 'application/json; charset=UTF-8',
       },
-      body: jsonEncode(<String, String>{
-        'cep': data.cep,
-        'localidade': data.localidade,
-        'complemento': data.complemento,
-        'bairro': data.bairro,
-        'logradouro': data.logradouro,
-        'uf': data.uf,
+      body: jsonEncode(<String, dynamic>{
+        'local': {
+          'cep': data.cep!,
+          'localidade': data.localidade!,
+          'complemento': data.complemento!,
+          'bairro': data.bairro!,
+          'logradouro': data.logradouro!,
+          'uf': data.uf!
+        },
+        'nivelDeAgua': this.nivelDeAgua
       }),
     );
 
@@ -85,17 +89,17 @@ class _AddFloodScreenState extends State<AddFloodScreen> {
     _onLoading();
     this.dadosEndereco = await getEnderecoByCep(cep);
 
-    this.cep.text = this.dadosEndereco.cep;
-    this.uf.text = this.dadosEndereco.uf;
-    this.cidade.text = this.dadosEndereco.localidade;
-    this.bairro.text = this.dadosEndereco.bairro;
-    this.endereco.text = this.dadosEndereco.logradouro;
-    this.complemento.text = this.dadosEndereco.complemento;
+    this.cep.text = this.dadosEndereco.cep!;
+    this.uf.text = this.dadosEndereco.uf!;
+    this.cidade.text = this.dadosEndereco.localidade!;
+    this.bairro.text = this.dadosEndereco.bairro!;
+    this.endereco.text = this.dadosEndereco.logradouro!;
+    this.complemento.text = this.dadosEndereco.complemento!;
     updateScreen();
   }
 
   void updateScreen() {
-    this.enableInputs = !this.enableInputs;
+    this.enableInputs = true;
     _onLoading();
 
     setState(() {
@@ -167,10 +171,38 @@ class _AddFloodScreenState extends State<AddFloodScreen> {
               ),
 
               Padding(
+                padding: const EdgeInsets.only(top: 30, bottom: 15),
+                child: Row(
+                  children: [
+                    Text("2. Selecione o nivel de agua", textAlign: TextAlign.left, style: AppTextStyles.floodScreenLabel),
+                  ],
+                ),
+              ),
+
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: DropdownButton <String> (
+                  value: this.nivelDeAgua,
+                  items: <String>['Baixo', 'Medio', 'Alto'].map((String value) {
+                    return DropdownMenuItem<String>(
+                      value: value,
+                      child: Text(value),
+                    );
+                  }).toList(),
+                  onChanged: (selectedValue) {
+                    print(this.nivelDeAgua);
+                    setState(() {
+                    });
+                    this.nivelDeAgua = selectedValue!;
+                  },
+                ),
+              ),
+
+              Padding(
                 padding: const EdgeInsets.only(top: 35, bottom: 15),
                 child: Row(
                   children: [
-                    Text("2. Confira os dados", textAlign: TextAlign.left, style: AppTextStyles.floodScreenLabel),
+                    Text("3. Confira os dados", textAlign: TextAlign.left, style: AppTextStyles.floodScreenLabel),
                   ],
                 ),
               ),

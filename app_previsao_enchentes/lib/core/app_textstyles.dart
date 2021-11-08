@@ -76,7 +76,7 @@ class AppTextStyles {
   );
 
   //
-  // Report Flood
+  // Report Flood Add
   //
   static final TextStyle floodScreenTitle = TextStyle(
     color: AppColors.blueMariner,
@@ -93,6 +93,25 @@ class AppTextStyles {
   static final TextStyle floodScreenButtonLabel = TextStyle(
     color: Colors.white,
     fontSize: 20,
+  );
+
+  //
+  // Report Flood See
+  //
+  static final TextStyle floodScreenLabelWidgetTitle = TextStyle(
+    color: Colors.white,
+    fontSize: 20,
+      fontWeight: FontWeight.w400
+  );
+
+  static final TextStyle floodScreenLabelWidget = TextStyle(
+      color: Colors.white,
+      fontSize: 15,
+  );
+
+  static final TextStyle floodScreenLabelNoRegister = TextStyle(
+    color: Colors.black,
+    fontSize: 25,
   );
 
 

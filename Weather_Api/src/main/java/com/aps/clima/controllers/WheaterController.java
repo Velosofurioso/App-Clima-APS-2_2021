@@ -4,9 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -26,15 +24,22 @@ public class WheaterController {
 	
 	@GetMapping
 	public ResponseEntity<Wheater> getActualWheater() {
-		WheaterDto actualWeather =  wheaterService.getActualWheater();
-		return ResponseEntity.ok().body(actualWeather.getResults());
+		
+		try {
+			logger.info("Requisição no endpoint GET /clima");
+			WheaterDto actualWeather;
+			actualWeather = wheaterService.getActualWheater();
+			
+			logger.info("Resposta do endpoint GET /clima");
+			return ResponseEntity.ok().body(actualWeather.getResults());
+		} 
+		catch (Exception e) {
+			logger.error("Erro no endpoint endpoint GET /clima \n " + e.getMessage());
+			return ResponseEntity.internalServerError().build();
+		}
+		
 	}
 	
-	
-	@GetMapping(value = "/air-quality/{cityName}")
-	public ResponseEntity<Integer> getAirQualityFromCityName(@PathVariable @Validated String cityName) {
-		int Humidity =  wheaterService.getAirQualityFromCity(cityName);
-		return ResponseEntity.ok().body(Humidity);
-	}
+
 
 }
